@@ -19,6 +19,7 @@ This is forked from [Markus Perl's work](https://github.com/markus-perl/pushover
 * Incorporating the 2 outstanding PRs on the original code that were open at the time I forked this.  Specifically:
   * Adding proxy support via the `HTTP_ENV` environment variable
   * Fixing the `--quiet` flag
+* Fixing the missing `url` parameter (which was being collected but not passed through to Pushover)
 
 Requirements
 ------------

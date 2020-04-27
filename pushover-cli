@@ -9,6 +9,8 @@ from urllib.parse import urlencode
 import re
 
 class Pushover:
+    VERSION = "0.3"
+    
     PRIORITY_HIGH = 1
 
     PRIORITY_LOW = -1
