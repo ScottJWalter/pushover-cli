@@ -114,8 +114,8 @@ class Pushover:
         self.parseConfig()
 
         try:
-            opts, args = getopt.getopt(sys.argv[1:], "hqvu:t:d:p:u:c:l:",
-                                       ["help", "user=", "token=", "device=", "priority=", "url=", "config=", "verbose", "quiet"])
+            opts, args = getopt.getopt(sys.argv[1:], "hqvu:t:d:p:l:c:",
+                                       ["help", "quiet", "verbose", "user=", "token=", "device=", "priority=", "url=", "config="])
         except getopt.GetoptError as err:
             print(str(err))
             self.usage()
@@ -205,15 +205,18 @@ class Pushover:
             conn = http.HTTPSConnection("api.pushover.net:443")
 
         post_pack = {
-            "token": self.token,
             "user": self.user,
+            "token": self.token,
+            "priority": self.priority,
             "title": self.title,
             "message": self.message,
-            "priority": self.priority,
         }
 
         if self.device != 'all':
             post_pack["device"] = self.device
+
+        if self.url is not None:
+            post_pack['url'] = self.url
 
         conn.request(
             "POST", 
